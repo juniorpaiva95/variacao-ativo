@@ -1,0 +1,45 @@
+<main>
+  
+  <div class="wrapper-head">
+    <aside>
+      <label>Informe o nome do ativo</label>
+      <input nz-input placeholder="Informe o nome do ativo" [(ngModel)]="assetName" />
+  
+      <button style="margin-top: 16px;" nz-button nzType="primary" (click)="loadData()">Buscar</button>
+    </aside>
+
+    <div>
+      <span [ngStyle]="{ margin: '16px 0' }">Dica de ativos para buscar</span>
+      <nz-list nzBordered nzSize="small">
+        <!-- <nz-list-header>Header</nz-list-header> -->
+        <nz-list-item>TAEE11.SA</nz-list-item>
+        <nz-list-item>PETR4.SA</nz-list-item>
+      </nz-list>
+    </div>
+  </div>
+  
+  
+  <hr>
+  <h4>Variação dos últimos 30 dias</h4>
+
+  <nz-table [nzLoading]="loading" style="margin-top: 20px;" #basicTable [nzData]="assetVariationList?.timestamp || []" [nzFrontPagination]="false">
+    <thead>
+      <tr>
+        <th>Dia</th>
+        <th>Data</th>
+        <th>Valor</th>
+        <th>Variação em relaçào a D-1</th>
+        <th>Variação em relação a primeira data</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let data of basicTable.data; let i = index">
+        <td>{{i +1}}</td>
+        <td>{{ formatDateFromUnix(data) }}</td>
+        <td>{{ formatMoney(getPropertyValue('indicators.quote[0].close['+i+']')) }}</td>
+        <td>{{ calculateVariationD1(getPropertyValue('indicators.quote[0].close['+i+']'), getPropertyValue('indicators.quote[0].close['+(i-1)+']')) }}%</td>
+        <td>{{ calculateVariationD1(getPropertyValue('indicators.quote[0].close['+i+']'), getPropertyValue('indicators.quote[0].close[0]')) }}%</td>
+      </tr>
+    </tbody>
+  </nz-table>
+</main>

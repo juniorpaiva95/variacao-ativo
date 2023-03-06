@@ -1,0 +1,13 @@
+main {
+    padding: 24px;
+}
+
+.wrapper-head {
+    display: flex;
+    gap: 16px;
+
+    aside, div  {
+        flex: 1;
+        padding: 16px 0px;
+    }
+}
