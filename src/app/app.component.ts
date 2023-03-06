@@ -92,4 +92,10 @@ export class AppComponent {
   public calculateVariationD1(oldValue: number, currentValue: number) {
     return (((oldValue - currentValue) / oldValue) * 100).toFixed(2);
   }
+
+  public getClassRedOrGreen(value: string): string {
+    if (Number(value) < 0) return 'text-red';
+    else if (Number(value) > 0) return 'text-green';
+    return '';
+  }
 }

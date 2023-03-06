@@ -37,8 +37,8 @@
         <td>{{i +1}}</td>
         <td>{{ formatDateFromUnix(data) }}</td>
         <td>{{ formatMoney(getPropertyValue('indicators.quote[0].close['+i+']')) }}</td>
-        <td>{{ calculateVariationD1(getPropertyValue('indicators.quote[0].close['+i+']'), getPropertyValue('indicators.quote[0].close['+(i-1)+']')) }}%</td>
-        <td>{{ calculateVariationD1(getPropertyValue('indicators.quote[0].close['+i+']'), getPropertyValue('indicators.quote[0].close[0]')) }}%</td>
+        <td [class]="getClassRedOrGreen(calculateVariationD1(getPropertyValue('indicators.quote[0].close['+i+']'), getPropertyValue('indicators.quote[0].close['+(i-1)+']')))">{{ calculateVariationD1(getPropertyValue('indicators.quote[0].close['+i+']'), getPropertyValue('indicators.quote[0].close['+(i-1)+']')) }}%</td>
+        <td [class]="getClassRedOrGreen(calculateVariationD1(getPropertyValue('indicators.quote[0].close['+i+']'), getPropertyValue('indicators.quote[0].close[0]')))">{{ calculateVariationD1(getPropertyValue('indicators.quote[0].close['+i+']'), getPropertyValue('indicators.quote[0].close[0]')) }}%</td>
       </tr>
     </tbody>
   </nz-table>
